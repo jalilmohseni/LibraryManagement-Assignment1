@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class BorrowRecord {
 
     @NotNull(message = "Borrow date cannot be null")
     @Temporal(TemporalType.DATE)
+    @PastOrPresent(message = "Borrow date cannot be in the future")
     private Date borrowDate;
 
     @Temporal(TemporalType.DATE)
