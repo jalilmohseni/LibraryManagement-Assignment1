@@ -30,164 +30,132 @@ This is a **Spring Boot REST API** for a **Library Management System**, allowing
 - **Test the API using Postman**
 - **API Documentation**
 - **API Endpoints**
-  📡 API Endpoints
-
 
 📡 API Endpoints
 
-📌 Library Members
+## 📌 Library Members
 
-Method
+### Method
 
-Endpoint
-
-Description
-
-GET
+- Get all members
 
 /api/members
 
-Get all members
-
-GET
+- Get a member by ID
 
 /api/members/{id}
 
-Get a member by ID
-
-POST
+- POST
 
 /api/members
 
 Add a new member
 
-PUT
+- PUT
 
 /api/members/{id}
 
 Update a member
 
-DELETE
+- DELETE
 
 /api/members/{id}
 
-Delete a member (Only if no borrowed books)
+- Delete a member (Only if no borrowed books)
 
-📌 Books
+## 📌 Books
 
-Method
+### Method
 
-Endpoint
 
-Description
-
-GET
+- Get all books
 
 /api/books
 
-Get all books
-
-GET
+- Get a book by ID
 
 /api/books/{id}
-
-Get a book by ID
-
-POST
+ 
+- POST
 
 /api/books
 
 Add a new book
 
-PUT
+- PUT
 
 /api/books/{id}
 
 Update a book
 
-DELETE
+- DELETE
 
 /api/books/{id}
 
 Delete a book (Only if not borrowed)
 
-📌 Authors
+## 📌 Authors
 
-Method
+### Method
 
-Endpoint
 
-Description
-
-GET
+- Get all authors
 
 /api/authors
 
-Get all authors
-
-GET
+- Get an author by ID
 
 /api/authors/{id}
 
-Get an author by ID
-
-POST
+- POST
 
 /api/authors
 
 Add a new author
 
-PUT
+- PUT
 
 /api/authors/{id}
 
 Update an author
 
-DELETE
+- DELETE
 
 /api/authors/{id}
 
 Delete an author (Only if no books)
 
-📌 Borrow Records
+## 📌 Borrow Records
 
-Method
+### Method
 
-Endpoint
-
-Description
-
-GET
-
+- GET all borrow records
+- 
 /api/borrowRecords
 
-Get all borrow records
-
-GET
+- Get a borrow record by ID
 
 /api/borrowRecords/{id}
 
-Get a borrow record by ID
-
-POST
+- POST
 
 /api/borrowRecords
 
 Add a new borrow record (Validations applied)
 
-PUT
+- PUT
 
 /api/borrowRecords/{id}
 
 Update a borrow record
 
-DELETE
+- DELETE
 
 /api/borrowRecords/{id}
 
 Delete a borrow record
 
-🤦🏼‍♂️ Testing with Postman
+## 🤦 Testing with Postman
 
 Open Postman.
 
@@ -195,12 +163,8 @@ Use the provided API endpoints to test GET, POST, PUT, and DELETE requests.
 
 Verify that validation rules prevent incorrect data submission.
 
-📚 License
+## 📌 Contributors
 
-This project is for educational purposes at SAIT - Object-Oriented Software Development (OOSD) Program.
-
-📌 Contributors
-
-👨‍💻 Jalil Mohseni📍 SAIT - Software Development Program
-👨‍💻 Elaheh Vafaeinia📍 SAIT - Software Development Program
-👨‍💻 Ryan Angaangan📍 SAIT - Software Development Program
+####  👨‍💻 Jalil Mohseni📍 SAIT - Software Development Program
+#### 👨‍💻 Elaheh Vafaeinia📍 SAIT - Software Development Program
+#### 👨‍💻 Ryan Angaangan📍 SAIT - Software Development Program
