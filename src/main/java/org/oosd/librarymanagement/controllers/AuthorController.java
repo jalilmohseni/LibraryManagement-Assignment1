@@ -1,5 +1,17 @@
 package org.oosd.librarymanagement.controllers;
 
+//********************************************************************************************************************
+// This class is a controller that handles HTTP requests related to authors.
+// It is annotated with @RestController to enable Spring component scanning and allow Spring to automatically detect this class as a controller.
+// It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller.
+// It has a constructor that takes in an AuthorRepository object.
+// The getAllAuthors method is mapped to the /api/authors endpoint and returns all authors in the database.
+// The getAuthorById method is mapped to the /api/authors/{id} endpoint and returns the author with the specified ID.
+// The addAuthor method is mapped to the /api/authors endpoint and adds a new author to the database.
+// The updateAuthor method is mapped to the /api/authors/{id} endpoint and updates the author with the specified ID.
+// The deleteAuthor method is mapped to the /api/authors/{id} endpoint and deletes the author with the specified ID.
+// The AuthorController class is responsible for handling CRUD operations related to authors in the library management system.
+//********************************************************************************************************************
 import org.oosd.librarymanagement.models.Author;
 import org.oosd.librarymanagement.repositories.AuthorRepository;
 import org.springframework.http.ResponseEntity;

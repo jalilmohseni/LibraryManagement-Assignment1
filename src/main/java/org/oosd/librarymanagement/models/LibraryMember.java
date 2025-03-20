@@ -1,4 +1,10 @@
 package org.oosd.librarymanagement.models;
+//********************************************************************************************************************
+// this is the LibraryMember class that represents a library member
+// it has a name, email, membership date, membership card, and a list of borrowed books
+// the LibraryMember class is an entity that is mapped to the library_members table in the database
+// it has a one-to-one relationship with the MembershipCard class and a one-to-many relationship with the BorrowRecord class
+//********************************************************************************************************************
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

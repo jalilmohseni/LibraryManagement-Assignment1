@@ -1,4 +1,11 @@
 package org.oosd.librarymanagement.models;
+//********************************************************************************************************************
+// this is the Book class that represents a book in the library
+// it has a title, ISBN, publication year, a list of authors, and a list of borrow records
+// the list of authors is a many-to-many relationship with the Author class
+// the list of borrow records is a one-to-many relationship with the BorrowRecord class
+// the Book class is an entity that is mapped to the books table in the database
+//********************************************************************************************************************
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

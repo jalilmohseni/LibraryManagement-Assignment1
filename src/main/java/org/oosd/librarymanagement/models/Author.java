@@ -1,5 +1,10 @@
 package org.oosd.librarymanagement.models;
-
+//********************************************************************************************************************
+// this is the Author class that represents an author of a book
+// it has a name, biography, and a list of books
+// the list of books is a many-to-many relationship with the Book class
+// the Author class is an entity that is mapped to the authors table in the database
+//********************************************************************************************************************
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;

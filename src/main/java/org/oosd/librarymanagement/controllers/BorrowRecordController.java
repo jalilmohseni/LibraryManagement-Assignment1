@@ -1,5 +1,17 @@
 package org.oosd.librarymanagement.controllers;
-
+//****************************************************************************************************************************
+//This is the BorrowRecordController class for the Library Management System.
+//This class is responsible for handling all the HTTP requests for the BorrowRecord entity.
+//It is annotated with @RestController to enable Spring component scanning and
+//allow Spring to automatically detect this class as a controller.
+//It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller.
+//It has a constructor that takes in a BorrowRecordRepository object.
+//The getAllBorrowRecords method is mapped to the /api/borrowRecords endpoint and returns all borrow records in the database.
+//The getBorrowRecordById method is mapped to the /api/borrowRecords/{id} endpoint and returns the borrow record with the specified ID.
+//The addBorrowRecord method is mapped to the /api/borrowRecords endpoint and adds a new borrow record to the database.
+//The updateBorrowRecord method is mapped to the /api/borrowRecords/{id} endpoint and updates the borrow record with the specified ID.
+//The deleteBorrowRecord method is mapped to the /api/borrowRecords/{id} endpoint and deletes the borrow record with the specified ID.
+//****************************************************************************************************************************
 import jakarta.validation.Valid;
 import org.oosd.librarymanagement.models.BorrowRecord;
 import org.oosd.librarymanagement.repositories.BorrowRecordRepository;

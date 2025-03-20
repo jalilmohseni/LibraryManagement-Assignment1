@@ -1,5 +1,25 @@
 package org.oosd.librarymanagement.config;
 
+
+//********************************************************************************************************************
+
+// this is the DatabaseSeeder class that seeds the database with some initial data
+// this class implements the CommandLineRunner interface
+// this class is annotated with @Component so that Spring Boot can automatically detect it
+// this class has a run method that seeds the database with some initial data if the database is empty
+// this class has a constructor that takes in the following parameters:
+// - LibraryMemberRepository
+// - MembershipCardRepository
+// - BookRepository
+// - AuthorRepository
+// - BorrowRecordRepository
+
+
+
+
+
+
+
 import org.oosd.librarymanagement.models.*;
 import org.oosd.librarymanagement.repositories.*;
 import org.springframework.boot.CommandLineRunner;
@@ -108,6 +128,6 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         borrowRecordRepository.save(record1);
 
-        System.out.println("✅ Database Seeded Successfully!");
+        System.out.println("Database Seeded Successfully!");
     }
 }

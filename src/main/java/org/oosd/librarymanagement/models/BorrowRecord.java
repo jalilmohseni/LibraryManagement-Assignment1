@@ -1,4 +1,10 @@
 package org.oosd.librarymanagement.models;
+//********************************************************************************************************************
+// this is the BorrowRecord class that represents a record of a book being borrowed by a library member
+// it has a borrow date, return date, library member, and book
+// the BorrowRecord class is an entity that is mapped to the borrow_records table in the database
+// it has a many-to-one relationship with the LibraryMember class and the Book class
+//********************************************************************************************************************
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

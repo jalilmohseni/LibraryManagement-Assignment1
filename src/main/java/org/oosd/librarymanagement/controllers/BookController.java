@@ -1,4 +1,17 @@
 package org.oosd.librarymanagement.controllers;
+//************************************************************************************
+//This is the BookController class for the Library Management System. This class
+//is responsible for handling all the HTTP requests for the Book entity.
+//It is annotated with @RestController to enable Spring component scanning and
+//allow Spring to automatically detect this class as a controller.
+//It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller.
+//It has a constructor that takes in a BookRepository object.
+//The getAllBooks method is mapped to the /api/books endpoint and returns all books in the database.
+//The getBookById method is mapped to the /api/books/{id} endpoint and returns the book with the specified ID.
+//The addBook method is mapped to the /api/books endpoint and adds a new book to the database.
+//The updateBook method is mapped to the /api/books/{id} endpoint and updates the book with the specified ID.
+//The deleteBook method is mapped to the /api/books/{id} endpoint and deletes the book with the specified ID.
+//**************************************************************************************
 
 import org.oosd.librarymanagement.models.Book;
 import org.oosd.librarymanagement.repositories.BookRepository;

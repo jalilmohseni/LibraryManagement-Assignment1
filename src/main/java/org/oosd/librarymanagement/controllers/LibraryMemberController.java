@@ -1,5 +1,17 @@
 package org.oosd.librarymanagement.controllers;
-
+//***********************************************************************************************************************
+//This file is the controller for the LibraryMember entity
+//It is responsible for handling all the HTTP requests for the LibraryMember entity
+//It is annotated with @RestController to enable Spring component scanning and
+//allow Spring to automatically detect this class as a controller
+//It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller
+//It has a constructor that takes in a LibraryMemberRepository object
+//The getAllMembers method is mapped to the /api/members endpoint and returns all members in the database
+//The getMemberById method is mapped to the /api/members/{id} endpoint and returns the member with the specified ID
+//The addMember method is mapped to the /api/members endpoint and adds a new member to the database
+//The updateMember method is mapped to the /api/members/{id} endpoint and updates the member with the specified ID
+//The deleteMember method is mapped to the /api/members/{id} endpoint and deletes the member with the specified ID
+//***********************************************************************************************************************
 import jakarta.validation.Valid;
 import org.oosd.librarymanagement.models.LibraryMember;
 import org.oosd.librarymanagement.repositories.LibraryMemberRepository;

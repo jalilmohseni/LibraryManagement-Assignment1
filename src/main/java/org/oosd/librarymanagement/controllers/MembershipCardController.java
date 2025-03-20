@@ -1,5 +1,16 @@
 package org.oosd.librarymanagement.controllers;
-
+//*************************************************************************************************
+//This file is the controller for the MembershipCard entity
+//It is responsible for handling all the HTTP requests for the MembershipCard entity
+//It is annotated with @RestController to enable Spring component scanning and
+//allow Spring to automatically detect this class as a controller
+//It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller
+//It has a constructor that takes in a MembershipCardRepository object
+//The getAllCards method is mapped to the /api/membership-cards endpoint and returns all membership cards in the database
+//The getCardById method is mapped to the /api/membership-cards/{id} endpoint and returns the membership card with the specified ID
+//The addCard method is mapped to the /api/membership-cards endpoint and adds a new membership card to the database
+//The deleteCard method is mapped to the /api/membership-cards/{id} endpoint and deletes the membership card with the specified ID
+//*************************************************************************************************
 
 
 import org.oosd.librarymanagement.models.MembershipCard;
