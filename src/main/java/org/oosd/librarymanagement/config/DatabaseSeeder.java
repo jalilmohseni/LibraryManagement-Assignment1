@@ -31,6 +31,7 @@ import java.util.Date;
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
+    // The "final" field is used because the value of the field should not be changed after it is initialized in the constructor.
     private final LibraryMemberRepository libraryMemberRepository;
     private final MembershipCardRepository membershipCardRepository;
     private final BookRepository bookRepository;
