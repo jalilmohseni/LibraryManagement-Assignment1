@@ -1,26 +1,33 @@
 package org.oosd.librarymanagement.controllers;
-
-/**
- * This controller handles CRUD operations for library members.
- * Only librarians can add or update members, while only admins can delete members.
- * Both librarians and admins can view all members, and members can view their own details.
- */
-
+//***********************************************************************************************************************
+//This file is the controller for the LibraryMember entity
+//It is responsible for handling all the HTTP requests for the LibraryMember entity
+//It is annotated with @RestController to enable Spring component scanning and
+//allow Spring to automatically detect this class as a controller
+//It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller
+//It has a constructor that takes in a LibraryMemberRepository object
+//The getAllMembers method is mapped to the /api/members endpoint and returns all members in the database
+//The getMemberById method is mapped to the /api/members/{id} endpoint and returns the member with the specified ID
+//The addMember method is mapped to the /api/members endpoint and adds a new member to the database
+//The updateMember method is mapped to the /api/members/{id} endpoint and updates the member with the specified ID
+//The deleteMember method is mapped to the /api/members/{id} endpoint and deletes the member with the specified ID
+//***********************************************************************************************************************
 import jakarta.validation.Valid;
 import org.oosd.librarymanagement.models.LibraryMember;
 import org.oosd.librarymanagement.repositories.LibraryMemberRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/members")
 public class LibraryMemberController {
-
     private final LibraryMemberRepository repository;
 
     public LibraryMemberController(LibraryMemberRepository repository) {
@@ -28,28 +35,24 @@ public class LibraryMemberController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('LIBRARIAN', 'ADMIN')")
-    public ResponseEntity<?> getAllMembers() {
-        return ResponseEntity.ok(repository.findAll());
+    public List<LibraryMember> getAllMembers() {
+        return repository.findAll();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('LIBRARIAN', 'ADMIN', 'MEMBER')")
-    public ResponseEntity<?> getMemberById(@PathVariable Long id) {
+    public ResponseEntity<LibraryMember> getMemberById(@PathVariable Long id) {
         Optional<LibraryMember> member = repository.findById(id);
         return member.map(ResponseEntity::ok)
-                .orElse(ResponseEntity.status(404).body(null));
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('LIBRARIAN')")
     public ResponseEntity<?> addMember(@Valid @RequestBody LibraryMember member) {
         return ResponseEntity.ok(repository.save(member));
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('LIBRARIAN')")
-    public ResponseEntity<?> updateMember(@PathVariable Long id, @Valid @RequestBody LibraryMember updatedMember) {
+    public ResponseEntity<LibraryMember> updateMember(@PathVariable Long id, @Valid @RequestBody LibraryMember updatedMember) {
         return repository.findById(id)
                 .map(member -> {
                     member.setName(updatedMember.getName());
@@ -57,26 +60,27 @@ public class LibraryMemberController {
                     member.setMembershipDate(updatedMember.getMembershipDate());
                     return ResponseEntity.ok(repository.save(member));
                 })
-                .orElse(ResponseEntity.status(404).body(null));
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteMember(@PathVariable Long id) {
         Optional<LibraryMember> member = repository.findById(id);
 
         if (member.isPresent()) {
             if (!member.get().getBorrowedBooks().isEmpty()) {
-                return ResponseEntity.badRequest().body("❌ Member cannot be deleted because they have borrowed books.");
+                return ResponseEntity.badRequest().body("Error: Member cannot be deleted because they have borrowed books.");
             }
 
             repository.delete(member.get());
             return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.status(404).body("❌ Member not found");
+        return ResponseEntity.status(404).body("Error: Member not found.");
     }
 
+
+    // Global exception handler for validation errors
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();

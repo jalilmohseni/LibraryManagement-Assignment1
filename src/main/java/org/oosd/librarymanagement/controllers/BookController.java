@@ -1,4 +1,17 @@
 package org.oosd.librarymanagement.controllers;
+//************************************************************************************
+//This is the BookController class for the Library Management System. This class
+//is responsible for handling all the HTTP requests for the Book entity.
+//It is annotated with @RestController to enable Spring component scanning and
+//allow Spring to automatically detect this class as a controller.
+//It is annotated with @RequestMapping to map HTTP requests to handler methods of this controller.
+//It has a constructor that takes in a BookRepository object.
+//The getAllBooks method is mapped to the /api/books endpoint and returns all books in the database.
+//The getBookById method is mapped to the /api/books/{id} endpoint and returns the book with the specified ID.
+//The addBook method is mapped to the /api/books endpoint and adds a new book to the database.
+//The updateBook method is mapped to the /api/books/{id} endpoint and updates the book with the specified ID.
+//The deleteBook method is mapped to the /api/books/{id} endpoint and deletes the book with the specified ID.
+//**************************************************************************************
 
 /**
  * This controller handles CRUD operations for books.
@@ -16,14 +29,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
-
     private final BookRepository repository;
 
     public BookController(BookRepository repository) {
         this.repository = repository;
     }
 
-    // 🔓 Anyone can view available books
     @GetMapping
     public ResponseEntity<?> getAllBooks() {
         return ResponseEntity.ok(repository.findAll());
@@ -36,16 +47,13 @@ public class BookController {
                 .orElseGet(() -> ResponseEntity.status(404).body(null));
     }
 
-    // 🛠 Only Admin and Librarian can add
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     public ResponseEntity<?> addBook(@RequestBody Book book) {
         return ResponseEntity.ok(repository.save(book));
     }
 
-    // 🛠 Only Admin and Librarian can update
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     public ResponseEntity<?> updateBook(@PathVariable Long id, @RequestBody Book updatedBook) {
         return repository.findById(id)
                 .map(book -> {
@@ -57,7 +65,6 @@ public class BookController {
                 .orElseGet(() -> ResponseEntity.status(404).body(null));
     }
 
-    // ❌ Only Admin and Librarian can delete
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     public ResponseEntity<?> deleteBook(@PathVariable Long id) {
@@ -65,13 +72,13 @@ public class BookController {
 
         if (book.isPresent()) {
             if (!book.get().getBorrowRecords().isEmpty()) {
-                return ResponseEntity.badRequest().body("❌ Book cannot be deleted because it has active borrow records.");
+                return ResponseEntity.badRequest().body("Error: Book cannot be deleted because it has active borrow records.");
             }
 
             repository.delete(book.get());
             return ResponseEntity.noContent().build();
         }
 
-        return ResponseEntity.status(404).body("❌ Book not found");
+        return ResponseEntity.status(404).body("Error: Book not found.");
     }
 }
