@@ -1,170 +1,122 @@
-# 📚 Library Management System
+# 📚 Library Management System (Spring Boot + JWT + RBAC)
 
-This is a **Spring Boot REST API** for a **Library Management System**, allowing management of **members, books, authors, borrow records, and membership cards**.
+This is a secure RESTful Library Management System built with **Spring Boot 3**, **Spring Security**, **JWT Authentication**, and **Role-Based Access Control (RBAC)**. It manages library members, books, authors, borrow records, and user authentication.
+
+---
 
 ## 🚀 Features
-✔ CRUD operations for **Library Members, Books, Authors, and Borrow Records**  
-✔ **Validation** (e.g., no deleting members with borrowed books, no books with future borrow dates)  
-✔ **Error handling** for invalid requests  
-✔ **Spring Boot, Hibernate, and JPA for database operations**
+
+### 🔐 Authentication & Authorization
+- JWT-based Login & Registration
+- BCrypt password hashing
+- Role-Based Access Control (RBAC)
+- Supports 3 roles:
+    - **ADMIN**: Full access
+    - **LIBRARIAN**: Manage books/authors/members
+    - **MEMBER**: Borrow and return books
+
+### 📦 Modules
+- **Library Members** (`/api/members`)
+- **Membership Cards** (`/api/membership-cards`)
+- **Books** (`/api/books`)
+- **Authors** (`/api/authors`)
+- **Borrow Records** (`/api/borrowRecords`)
+- **Authentication** (`/api/auth`)
 
 ---
 
-## 🛠️ Technologies Used
-- **Java 21** (Spring Boot)
-- **Spring Boot **
-- **Spring Data JPA**
-- **MySQL Database**
-- **Lombok**
-- **Postman** for API testing
+## 🔑 Roles & Permissions
+
+| Role       | Capabilities |
+|------------|--------------|
+| **ADMIN**  | Manage librarians (users), authors, books, and view all borrow records |
+| **LIBRARIAN** | Add/edit/delete books/authors, manage borrow records, view members |
+| **MEMBER** | Borrow/return books, view own borrow history |
+| **Public** | Can view available books and authors (no auth required) |
 
 ---
 
-## 🏗️ Setup Instructions
-- **Clone the repository**
-- ** git clone https://github.com/jalilmohseni/LibraryManagement-Assignment1.git
-- **Create a MySQL database**
-- ** create a database in MySQL named `libraryManagement`**
-- **Update the `application.properties` file with your database credentials**
-- **Run the application**
-- **Test the API using Postman**
-- **API Documentation**
-- **API Endpoints**
+## 🧪 API Endpoints (Sample)
 
-📡 API Endpoints
+### 🔐 Auth
+| Endpoint           | Method | Access       |
+|--------------------|--------|--------------|
+| `/api/auth/login`  | POST   | Public       |
+| `/api/auth/register` | POST | Public       |
+| `/api/auth/logout` | POST   | Authenticated |
 
-## 📌 Library Members
+### 📘 Books
+| Endpoint         | Method | Role             |
+|------------------|--------|------------------|
+| `/api/books`     | GET    | Public           |
+| `/api/books`     | POST   | ADMIN, LIBRARIAN |
+| `/api/books/{id}`| PUT/DELETE | ADMIN, LIBRARIAN |
 
-### Method
+### 👥 Members
+| Endpoint           | Method | Role         |
+|--------------------|--------|--------------|
+| `/api/members`     | GET    | ADMIN, LIBRARIAN |
+| `/api/members/{id}`| GET    | ADMIN, LIBRARIAN, MEMBER |
+| `/api/members`     | POST/PUT | LIBRARIAN  |
+| `/api/members/{id}`| DELETE | ADMIN       |
 
-- Get all members
+---
 
-/api/members
+## 🛡️ Security
 
-- Get a member by ID
+- JWT tokens are used for securing requests.
+- Add your JWT to the `Authorization` header as:
+- Authorization: Bearer <your_token>
 
-/api/members/{id}
 
-- POST
+---
 
-/api/members
+## 💾 Tech Stack
 
-Add a new member
+- Java 17+
+- Spring Boot 3
+- Spring Security
+- JJWT (JSON Web Tokens)
+- MySQL / H2 (Your preferred DB)
+- Maven
 
-- PUT
+---
 
-/api/members/{id}
+## 🧰 Getting Started
 
-Update a member
+### 🧑‍💻 Prerequisites
 
-- DELETE
+- Java 17+
+- Maven
+- MySQL running locally (or update application.properties)
 
-/api/members/{id}
+### ⚙️ Run the Project
 
-- Delete a member (Only if no borrowed books)
+```bash
+# 1. Clone the project
+git clone https://github.com/yourusername/library-management-system.git
+cd library-management-system
 
-## 📌 Books
+# 2. Build and run
+mvn spring-boot:run
+```
 
-### Method
 
+### 🔐 Sample Users
+Role	Username	Password
+Admin	admin	admin123
+Librarian	lib	lib123
+Member	Register using /api/auth/register	
 
-- Get all books
 
-/api/books
-
-- Get a book by ID
-
-/api/books/{id}
- 
-- POST
-
-/api/books
-
-Add a new book
-
-- PUT
-
-/api/books/{id}
-
-Update a book
-
-- DELETE
-
-/api/books/{id}
-
-Delete a book (Only if not borrowed)
-
-## 📌 Authors
-
-### Method
-
-
-- Get all authors
-
-/api/authors
-
-- Get an author by ID
-
-/api/authors/{id}
-
-- POST
-
-/api/authors
-
-Add a new author
-
-- PUT
-
-/api/authors/{id}
-
-Update an author
-
-- DELETE
-
-/api/authors/{id}
-
-Delete an author (Only if no books)
-
-## 📌 Borrow Records
-
-### Method
-
-- GET all borrow records
-- 
-/api/borrowRecords
-
-- Get a borrow record by ID
-
-/api/borrowRecords/{id}
-
-- POST
-
-/api/borrowRecords
-
-Add a new borrow record (Validations applied)
-
-- PUT
-
-/api/borrowRecords/{id}
-
-Update a borrow record
-
-- DELETE
-
-/api/borrowRecords/{id}
-
-Delete a borrow record
-
-## 🤦 Testing with Postman
-
-Open Postman.
-
-Use the provided API endpoints to test GET, POST, PUT, and DELETE requests.
-
-Verify that validation rules prevent incorrect data submission.
+| Role                | Username | Password  |
+|---------------------|----------|-----------|
+| `Admin`             | admin    | admin123  |
+| `Librarian`         | lib      | lib123    |
+| `Member`            | Register using /api/auth/register | LIBRARIAN |
 
 ## 📌 Contributors
 
 ####  👨‍💻 Jalil Mohseni📍 SAIT - Software Development Program
 #### 👨‍💻 Elaheh Vafaeinia📍 SAIT - Software Development Program
-#### 👨‍💻 Taofeek Oduola 📍 SAIT - Software Development Program
+#### 👨‍💻 Taofeek Oduola📍 SAIT - Software Development Program

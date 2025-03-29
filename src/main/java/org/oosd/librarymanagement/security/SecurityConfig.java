@@ -29,16 +29,14 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll() // Public login/register
-                        .requestMatchers("/api/books").permitAll() // Anyone can view books
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/librarian/**").hasAnyRole("ADMIN", "LIBRARIAN")
-                        .requestMatchers("/api/member/**").hasRole("MEMBER")
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/auth/**").permitAll()                   // Public login/register
+                        .requestMatchers("/api/public/**").permitAll()                 // Public book browsing
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")             // Admin-only
+                        .requestMatchers("/api/librarian/**").hasAnyRole("ADMIN", "LIBRARIAN") // Librarians + Admins
+                        .requestMatchers("/api/member/**").hasRole("MEMBER")           // Members only
+                        .anyRequest().authenticated()                                  // Default: must be authenticated
                 )
-
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
