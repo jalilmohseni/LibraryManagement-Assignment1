@@ -1,4 +1,8 @@
 package org.oosd.librarymanagement.models;
+/**
+ * This class represents a user in the library management system.
+ * It contains user details such as username, password, email, and role.
+ */
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -9,6 +13,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+/**
+ * Represents a user in the library management system.
+ */
 public class User {
 
     @Id

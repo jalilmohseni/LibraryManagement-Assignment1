@@ -1,5 +1,9 @@
 package org.oosd.librarymanagement.security;
-
+/**
+ * This class is a filter that intercepts HTTP requests to validate JWT tokens.
+ * It extracts the JWT token from the Authorization header, validates it, and sets the authentication
+ * in the security context if the token is valid.
+ */
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +24,18 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
+
+    /**
+         * Filters incoming HTTP requests to validate JWT tokens.
+         * Extracts the JWT token from the Authorization header, validates it,
+         * and sets the authentication in the security context if the token is valid.
+         *
+         * @param request the HTTP request
+         * @param response the HTTP response
+         * @param filterChain the filter chain
+         * @throws ServletException if an error occurs during the filtering process
+         * @throws IOException if an I/O error occurs during the filtering process
+         */
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

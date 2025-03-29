@@ -1,4 +1,12 @@
 package org.oosd.librarymanagement.controllers;
+/**
+ * This controller handles CRUD operations for borrow records.
+ * It allows admins and librarians to view all borrow records,
+ * while members can view their own borrow records.
+ * Librarians and members can add and update borrow records,
+ * while only librarians can delete them.
+ */
+
 
 import jakarta.validation.Valid;
 import org.oosd.librarymanagement.models.BorrowRecord;

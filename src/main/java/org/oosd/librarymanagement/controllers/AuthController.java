@@ -1,5 +1,11 @@
 package org.oosd.librarymanagement.controllers;
 
+/**
+ * This controller handles authentication-related operations such as login, registration, and logout.
+ */
+
+
+
 import org.oosd.librarymanagement.models.Role;
 import org.oosd.librarymanagement.models.User;
 import org.oosd.librarymanagement.repositories.UserRepository;

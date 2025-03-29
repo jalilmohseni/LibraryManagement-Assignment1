@@ -1,5 +1,8 @@
 package org.oosd.librarymanagement.security;
-
+/**
+ * This class provides utility methods for generating, extracting, and validating JWT tokens.
+ * It uses the HS512 algorithm for signing the tokens and ensures a token validity of 24 hours.
+ */
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;

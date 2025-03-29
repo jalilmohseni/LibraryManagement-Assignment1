@@ -1,5 +1,11 @@
 package org.oosd.librarymanagement.controllers;
 
+/**
+ * This controller handles CRUD operations for library members.
+ * Only librarians can add or update members, while only admins can delete members.
+ * Both librarians and admins can view all members, and members can view their own details.
+ */
+
 import jakarta.validation.Valid;
 import org.oosd.librarymanagement.models.LibraryMember;
 import org.oosd.librarymanagement.repositories.LibraryMemberRepository;

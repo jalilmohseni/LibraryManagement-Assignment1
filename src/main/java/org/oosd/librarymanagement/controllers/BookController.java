@@ -1,5 +1,10 @@
 package org.oosd.librarymanagement.controllers;
 
+/**
+ * This controller handles CRUD operations for books.
+ * It allows anyone to view books, while only admins and librarians can add, update, or delete books.
+ */
+
 import org.oosd.librarymanagement.models.Book;
 import org.oosd.librarymanagement.repositories.BookRepository;
 import org.springframework.http.ResponseEntity;

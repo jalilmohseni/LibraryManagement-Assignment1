@@ -1,5 +1,8 @@
 package org.oosd.librarymanagement.security;
-
+/**
+ * This class configures the security settings for the application.
+ * It sets up authentication, authorization, and session management.
+ */
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -23,6 +26,17 @@ public class SecurityConfig {
         this.userDetailsService = userDetailsService;
         this.jwtFilter = jwtFilter;
     }
+/**
+     * Configures the security filter chain for the application.
+     * This method sets up the security rules, disables CSRF, configures session management,
+     * and adds the JWT filter before the UsernamePasswordAuthenticationFilter.
+     *
+     * @param http the HttpSecurity object to configure
+     * @return the configured SecurityFilterChain
+     * @throws Exception if an error occurs during configuration
+     */
+
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -42,19 +56,19 @@ public class SecurityConfig {
     }
 
 
-    // ✅ Register Password Encoder
+    //  Register Password Encoder
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // ✅ AuthenticationManager for use in AuthController
+    // AuthenticationManager for use in AuthController
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // ✅ Hook up userDetailsService + passwordEncoder for authentication
+    // Hook up userDetailsService + passwordEncoder for authentication
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

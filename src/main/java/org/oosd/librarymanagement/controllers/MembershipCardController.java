@@ -1,5 +1,13 @@
 package org.oosd.librarymanagement.controllers;
 
+/**
+ * This controller handles CRUD operations for membership cards.
+ * Only librarians can add cards, while only admins can delete them.
+ * Both librarians and admins can view all cards.
+ */
+
+
+
 import org.oosd.librarymanagement.models.MembershipCard;
 import org.oosd.librarymanagement.repositories.MembershipCardRepository;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,10 @@
 package org.oosd.librarymanagement.controllers;
 
+/**
+ * This controller handles CRUD operations for authors.
+ * It allows anyone to view authors, while only admins and librarians can add or update authors.
+ * Only admins can delete authors.
+ */
 import org.oosd.librarymanagement.models.Author;
 import org.oosd.librarymanagement.repositories.AuthorRepository;
 import org.springframework.http.ResponseEntity;
