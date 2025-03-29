@@ -21,7 +21,6 @@ package org.oosd.librarymanagement.controllers;
 import org.oosd.librarymanagement.models.Book;
 import org.oosd.librarymanagement.repositories.BookRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -48,7 +47,6 @@ public class BookController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     public ResponseEntity<?> addBook(@RequestBody Book book) {
         return ResponseEntity.ok(repository.save(book));
     }
@@ -66,7 +64,6 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'LIBRARIAN')")
     public ResponseEntity<?> deleteBook(@PathVariable Long id) {
         Optional<Book> book = repository.findById(id);
 
